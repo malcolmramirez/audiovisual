@@ -1,0 +1,63 @@
+setcps (120/60/4)
+
+d1
+  $ slow 4
+  $ note "<g'maj b'min c'maj7 a'min>"
+  # s "superfm"
+  # fmamps [1, 1/2, 0, 1/16, 0, 0]
+  # fmratios [1/2, 1/4, 1/2, 1, 0, 0]
+  # fmdetunes [-1, -2, 1, 2, 0, 0]
+  # amp3bus 1 (slow 8 $ segment 32 $ range 0 0.5 sine)
+  # fmegrates 1 [1/2, 2, 1/2, 1/2, 1/2, 2]
+  # fmegrates 2 [1/4, 1/4, 1/4, 1/4, 1/4, 1/4]
+  # fmegrates 3 [1, 1/2, 1, 1/2, 1, 1/2]
+  # fmegrates 4 [1/8, 1/8, 1/8, 1/8, 1/8, 1/8]
+  # fmeglevels 1 [1, 1/2, 1, 1/2, 1, 1/2]
+  # fmeglevels 2 [1, 1/2, 1, 1/2, 1, 1/2]
+  # fmeglevels 3 [1/3, 1/2, 1/3, 1/2, 1/3, 1/2]
+  # fmmods 1 [fast (1 + (irand 3)) $ range 0 0.5 sine | i <-[0..5]]
+  # fmmods 2 [slow (1 + (irand 3)) $ range 0 0.5 sine | i <-[0..5]]
+  # fmmods 3 [slow (1 + (irand 3)) $ range 0 0.25 saw | i <-[0..5]]
+  # fmmods 4 [fast (1 + (irand 3)) $ range 0 0.5 perlin | i <-[0..5]]
+  # lfofreqbus 5 (fast 4 $ range 0.01 0.5 rand)
+  # lfodepthbus 4 (slow 32 $ segment 64 $ range 0 0.005 sine)
+  # ringbus 7 (fast 4 $ segment 32 $ range 0 0.05 perlin)
+  # ringfbus 6 (slow 8 $ segment 32 $ range 100 1500 saw)
+  # ringdf (irand 1000)
+  # delay 0.5
+  # delaytime 4
+  # delayfeedback 0.1
+  # roombus 2 (slow 32 $ segment 32 $ range 0.25 1 sine)
+  # sizebus 3 (slow 32 $ segment 32 $ range 0.5 0.99 cosine)
+  # smearbus 8 (fast 4 $ segment 64 $ range 0 0.05 (sine + perlin))
+  # hpf 250
+  # dry 0
+  # gain 0.9
+
+d2
+  $ mtrigger 16
+  $ slow 4
+  $ note "<[g b? d g?] [b? d fs? b] [c e? g b?] [a? c e? a]>"
+  # octave (5 + irand 1)
+  # release 1
+  # s "superhammond"
+  # delay 0.1
+  # delaytime (3/4)
+  # delayfeedbackbus 10 (slow 4 $ segment 64 $ range 0.05 0.5 sine)
+  # gain (slow ((range 4 8 sine)) $ range 0.75 0.9 sine)
+  # room 0.5
+  # dry 0.25
+  # size 0.9
+  # smearbus 9 (fast 4 $ segment 64 $ range 0 0.25 (sine + perlin))
+
+d3
+  $ qtrigger
+  $ fast "32"
+  $ s "cpu:1"
+  # release (range 0.005 0.01 rand)
+  # distort (slow 64 $ range 0.1 0.75 sine)
+  # delay 0.25
+  # delaytime (1/32)
+  # delayfeedback (slow 128 $ range 0 0.5 sine)
+  # gain (slow 256 $ range 0.25 0.65 (sine + perlin))
+  # enhance (slow 64 $ range 0 0.4 (saw + rand)) 
