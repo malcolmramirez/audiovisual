@@ -61,7 +61,7 @@ do
   let d6m = if (phases!!0 == 0)
             then (note "<c'sus2 d'min>")
             else ((every 2 (ply (choose [4, 8, 16, 32]))) $ (note "c'min7 a'maj7 c'min ds'maj7"))
-  let mixer = [1, 1] :: [Pattern Double]
+  let mixer = [1, 0] :: [Pattern Double]
   d6
     $ slow 4
     $ d6m
@@ -80,7 +80,7 @@ do
             then (note "<[c ~ ~ c c] c(5, 8) c*4>")
             else (note "c(5, 8)")
   d7 
-    $ rarely ((ply 2) . (# octave "6") . (# delay 0.25) . (# delaytime (1/8)) . (# delayfeedback 0.9) . (# gain 0.9))
+    $ rarely ((ply 2) . (# octave "6") . (# delay 0.25) . (# delaytime (1/8)) . (# delayfeedback 0.9) . (# (gain (0.9 * mixer!!1))))
     $ d7m
     # s "jvbass"
     # octave "6"
